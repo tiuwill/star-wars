@@ -1,4 +1,4 @@
-package br.com.star.wars.Star.Wars.Rebel.s.Network;
+package br.com.star.wars;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

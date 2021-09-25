@@ -1,4 +1,4 @@
-package br.com.star.wars.Star.Wars.Rebel.s.Network;
+package br.com.star.wars;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
