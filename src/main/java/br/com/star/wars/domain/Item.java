@@ -14,7 +14,7 @@ public class Item {
 
    private Integer pontos;
 
-   @ManyToMany(mappedBy = "ITEM_DO_REBELDE")
+   @ManyToMany(mappedBy = "items")
    private List<Rebelde> rebeldes;
 
     public Item(Long id, String descricao, Integer pontos) {
