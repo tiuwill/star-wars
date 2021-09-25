@@ -1,8 +1,8 @@
 CREATE TABLE REPORTE_DE_TRAICAO (
    ID INT PRIMARY KEY,
-   REPORTER INT NOT NULL,
-   REPORTADO INT NOT NULL,
+   ID_REPORTER INT NOT NULL,
+   ID_REPORTADO INT NOT NULL,
    DATA_DO_REPORTE DATE NOT NULL,
-   foreign key (REPORTER) references Rebelde(ID),
-   foreign key (REPORTADO) references Rebelde(ID)
+   foreign key (ID_REPORTER) references Rebelde(ID),
+   foreign key (ID_REPORTADO) references Rebelde(ID)
 );
