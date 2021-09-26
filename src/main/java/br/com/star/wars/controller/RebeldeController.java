@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.websocket.server.PathParam;
 import java.net.URI;
 
 @RestController
@@ -33,7 +32,7 @@ public class RebeldeController {
     }
 
     @GetMapping("/{id}")
-    public RebeldeDTO listarRebeldes(@PathParam("id") Long id) {
+    public RebeldeDTO listarRebeldes(@PathVariable("id") Long id) {
         return rebeldeService.buscarRebelde(id);
     }
 
@@ -43,9 +42,9 @@ public class RebeldeController {
         return ResponseEntity.created(URI.create("/rebelde")).build();
     }
 
-    @PatchMapping("/{id}/localizacao")
-    public ResponseEntity<?> atualizarLocalizacao(@PathParam("id") Long id,
-                                     @Valid LocalizacaoDTO localizacaoDTO) {
+    @PutMapping("/{id}/localizacao")
+    public ResponseEntity<?> atualizarLocalizacao(@PathVariable("id") Long id,
+                                     @Valid @RequestBody LocalizacaoDTO localizacaoDTO) {
         rebeldeService.atualizarLocalizacao(id, localizacaoDTO);
         return ResponseEntity.noContent().build();
     }

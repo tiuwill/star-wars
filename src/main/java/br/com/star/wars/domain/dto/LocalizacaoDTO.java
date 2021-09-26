@@ -2,13 +2,24 @@ package br.com.star.wars.domain.dto;
 
 import br.com.star.wars.domain.Localizacao;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class LocalizacaoDTO {
 
     private Long id;
+    @NotNull
     private Double latitude;
+    @NotNull
     private Double longitutde;
+    @NotNull
+    @NotBlank
     private String nome;
+    @NotNull
+    @NotBlank
     private String galaxia;
+    @NotNull
+    @NotBlank
     private String base;
 
 
