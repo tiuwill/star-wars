@@ -29,9 +29,7 @@ public class ReporteController {
 
     @PostMapping
     public ResponseEntity<?> reportar(@Valid @RequestBody ReporteDTO reporteDTO) {
-        RebeldeDTO reporter = rebeldeService.buscarRebelde(reporteDTO.getReporter());
-        RebeldeDTO reportado = rebeldeService.buscarRebelde(reporteDTO.getReportado());
-        reporteService.reportar(reporter, reportado);
+        reporteService.reportar(reporteDTO);
         return ResponseEntity.noContent().build();
     }
 }

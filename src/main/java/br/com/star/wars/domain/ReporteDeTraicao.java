@@ -30,13 +30,6 @@ public class ReporteDeTraicao {
         this.reportado = reportado;
     }
 
-    public static ReporteDeTraicao of(RebeldeDTO reporter, RebeldeDTO reportado) {
-        return new ReporteDeTraicao(
-                Rebelde.of(reporter),
-                Rebelde.of(reportado)
-        );
-    }
-
     @PrePersist
     public void prePersist() {
         if(this.dataDoReporte == null) {
