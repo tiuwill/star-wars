@@ -1,7 +1,11 @@
 package br.com.star.wars.domain;
 
+import br.com.star.wars.domain.dto.RebeldeDTO;
+import org.apache.tomcat.jni.Local;
+
 import javax.persistence.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 public class Rebelde {
@@ -19,7 +23,7 @@ public class Rebelde {
 
     private boolean traidor;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "ITEM_DO_REBELDE",
     joinColumns = @JoinColumn(name = "ID_REBELDE"),
     inverseJoinColumns = @JoinColumn(name = "ID_ITEM"))
@@ -29,12 +33,29 @@ public class Rebelde {
     @JoinColumn(name = "localizacao_id", referencedColumnName = "id")
     private Localizacao localizacao;
 
-    public Rebelde(Long id, String nome, Integer idade, Genero genero, boolean traidor) {
-        this.id = id;
+    @OneToMany(mappedBy="reporter")
+    private List<ReporteDeTraicao> reportesDados;
+
+    @OneToMany(mappedBy="reportado")
+    private List<ReporteDeTraicao> reportesRecebidos;
+
+    public Rebelde(String nome, Integer idade, Genero genero, List<Item> items, Localizacao localizacao) {
         this.nome = nome;
         this.idade = idade;
         this.genero = genero;
-        this.traidor = traidor;
+        this.traidor = false;
+        this.items = items;
+        this.localizacao = localizacao;
+    }
+
+    public static Rebelde of(RebeldeDTO rebeldeDTO) {
+        return new Rebelde(
+                rebeldeDTO.getNome(),
+                rebeldeDTO.getIdade(),
+                rebeldeDTO.getGenero(),
+                rebeldeDTO.getItems().stream().map(Item::of).collect(Collectors.toList()),
+                Localizacao.of(rebeldeDTO.getLocalizacao())
+        );
     }
 
     public Long getId() {
@@ -59,5 +80,13 @@ public class Rebelde {
 
     public Localizacao getLocalizacao() {
         return localizacao;
+    }
+
+    public List<ReporteDeTraicao> getReportesDados() {
+        return reportesDados;
+    }
+
+    public List<ReporteDeTraicao> getReportesRecebidos() {
+        return reportesRecebidos;
     }
 }

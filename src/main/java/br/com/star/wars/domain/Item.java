@@ -1,5 +1,7 @@
 package br.com.star.wars.domain;
 
+import br.com.star.wars.domain.dto.ItemDTO;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -21,6 +23,14 @@ public class Item {
         this.id = id;
         this.descricao = descricao;
         this.pontos = pontos;
+    }
+
+    public static Item of(ItemDTO itemDTO) {
+        return new Item(
+                itemDTO.getId(),
+                itemDTO.getDescricao(),
+                itemDTO.getPontos()
+        );
     }
 
     public Long getId() {

@@ -1,30 +1,17 @@
-package br.com.star.wars.domain;
+package br.com.star.wars.domain.dto;
 
-import br.com.star.wars.domain.dto.LocalizacaoDTO;
+import br.com.star.wars.domain.Localizacao;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+public class LocalizacaoDTO {
 
-@Entity
-public class Localizacao {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     private Double latitude;
-
     private Double longitutde;
-
     private String nome;
-
     private String galaxia;
-
     private String base;
 
-    public Localizacao(Long id, Double latitude, Double longitutde, String nome, String galaxia, String base) {
+    public LocalizacaoDTO(Long id, Double latitude, Double longitutde, String nome, String galaxia, String base) {
         this.id = id;
         this.latitude = latitude;
         this.longitutde = longitutde;
@@ -33,20 +20,9 @@ public class Localizacao {
         this.base = base;
     }
 
-    public static Localizacao of(LocalizacaoDTO localizacao) {
-        return new Localizacao(
-                null,
-                localizacao.getLatitude(),
-                localizacao.getLongitutde(),
-                localizacao.getNome(),
-                localizacao.getGalaxia(),
-                localizacao.getBase()
-        );
-    }
-
-    public static Localizacao of(Long id, LocalizacaoDTO localizacao) {
-        return new Localizacao(
-                id,
+    public static LocalizacaoDTO of(Localizacao localizacao) {
+        return new LocalizacaoDTO(
+                localizacao.getId(),
                 localizacao.getLatitude(),
                 localizacao.getLongitutde(),
                 localizacao.getNome(),

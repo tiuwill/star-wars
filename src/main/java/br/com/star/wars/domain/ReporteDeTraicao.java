@@ -1,5 +1,7 @@
 package br.com.star.wars.domain;
 
+import br.com.star.wars.domain.dto.RebeldeDTO;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -21,11 +23,23 @@ public class ReporteDeTraicao {
     private LocalDateTime dataDoReporte;
 
 
-    public ReporteDeTraicao(Long id, Rebelde reporter, Rebelde reportado, LocalDateTime dataDoReporte) {
-        this.id = id;
+    public ReporteDeTraicao(Rebelde reporter, Rebelde reportado) {
         this.reporter = reporter;
         this.reportado = reportado;
-        this.dataDoReporte = dataDoReporte;
+    }
+
+    public static ReporteDeTraicao of(RebeldeDTO reporter, RebeldeDTO reportado) {
+        return new ReporteDeTraicao(
+                Rebelde.of(reporter),
+                Rebelde.of(reportado)
+        );
+    }
+
+    @PrePersist
+    public void prePersist() {
+        if(this.dataDoReporte == null) {
+            this.dataDoReporte = LocalDateTime.now();
+        }
     }
 
 
@@ -40,6 +54,7 @@ public class ReporteDeTraicao {
     public Rebelde getReportado() {
         return reportado;
     }
+
 
     public LocalDateTime getDataDoReporte() {
         return dataDoReporte;
