@@ -1,5 +1,6 @@
 package br.com.star.wars.domain;
 
+import br.com.star.wars.domain.dto.ItemDTO;
 import br.com.star.wars.domain.dto.RebeldeDTO;
 import org.apache.tomcat.jni.Local;
 
@@ -101,5 +102,16 @@ public class Rebelde {
 
     public List<ReporteDeTraicao> getReportesRecebidos() {
         return reportesRecebidos;
+    }
+
+    public void atualizarInventario(List<ItemDTO> remover, List<ItemDTO> adicionar) {
+        items.removeIf(item ->
+                remover.stream().anyMatch(
+                        itemDTO -> itemDTO.getId().equals(item.getId()
+                    )
+                )
+        );
+
+        items.addAll(adicionar.stream().map(Item::of).collect(Collectors.toList()));
     }
 }

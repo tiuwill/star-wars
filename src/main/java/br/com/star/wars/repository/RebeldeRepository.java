@@ -7,6 +7,5 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface RebeldeRepository extends CrudRepository<Rebelde, Long> {
 
-
     Page<Rebelde> findAll(Pageable paginacao);
 }

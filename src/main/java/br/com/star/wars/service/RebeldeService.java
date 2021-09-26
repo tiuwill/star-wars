@@ -5,6 +5,7 @@ import br.com.star.wars.domain.Rebelde;
 import br.com.star.wars.domain.dto.LocalizacaoDTO;
 import br.com.star.wars.domain.dto.RebeldeDTO;
 import br.com.star.wars.exception.RebeldeNaoEncontradoException;
+import br.com.star.wars.exception.RebeldeTraidorException;
 import br.com.star.wars.repository.LocalizacaoRepository;
 import br.com.star.wars.repository.RebeldeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,8 +44,16 @@ public class RebeldeService {
         localizacaoRepository.save(novaLocalizacao);
     }
 
-    private Rebelde buscar(Long id) {
-        return rebeldeRepository.findById(id)
+    public Rebelde buscar(Long id) {
+        Rebelde rebelde = rebeldeRepository.findById(id)
                 .orElseThrow(RebeldeNaoEncontradoException::new);
+
+        if(rebelde.isTraidor()) throw new RebeldeTraidorException(rebelde.getNome());
+        return rebelde;
     }
+
+    public Rebelde salvar(Rebelde rebelde) {
+        return this.rebeldeRepository.save(rebelde);
+    }
+
 }
