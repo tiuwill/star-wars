@@ -2,8 +2,11 @@ package br.com.star.wars.domain.dto;
 
 import br.com.star.wars.domain.Item;
 
+import javax.validation.constraints.NotNull;
+
 public class ItemDTO {
 
+    @NotNull
     private Long id;
     private String descricao;
     private Integer pontos;

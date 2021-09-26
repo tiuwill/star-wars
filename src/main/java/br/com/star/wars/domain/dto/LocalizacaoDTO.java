@@ -11,6 +11,7 @@ public class LocalizacaoDTO {
     private String galaxia;
     private String base;
 
+
     public LocalizacaoDTO(Long id, Double latitude, Double longitutde, String nome, String galaxia, String base) {
         this.id = id;
         this.latitude = latitude;
@@ -24,7 +25,18 @@ public class LocalizacaoDTO {
         return new LocalizacaoDTO(
                 localizacao.getId(),
                 localizacao.getLatitude(),
-                localizacao.getLongitutde(),
+                localizacao.getLongitude(),
+                localizacao.getNome(),
+                localizacao.getGalaxia(),
+                localizacao.getBase()
+        );
+    }
+
+    public static LocalizacaoDTO of(Long id, Localizacao localizacao) {
+        return new LocalizacaoDTO(
+                id,
+                localizacao.getLatitude(),
+                localizacao.getLongitude(),
                 localizacao.getNome(),
                 localizacao.getGalaxia(),
                 localizacao.getBase()

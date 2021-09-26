@@ -30,7 +30,7 @@ public class Rebelde {
     private List<Item> items;
 
     @OneToOne
-    @JoinColumn(name = "localizacao_id", referencedColumnName = "id")
+    @JoinColumn(name = "ID_LOCALIZACAO", referencedColumnName = "id")
     private Localizacao localizacao;
 
     @OneToMany(mappedBy="reporter")
@@ -38,6 +38,9 @@ public class Rebelde {
 
     @OneToMany(mappedBy="reportado")
     private List<ReporteDeTraicao> reportesRecebidos;
+
+    public Rebelde() {
+    }
 
     public Rebelde(String nome, Integer idade, Genero genero, List<Item> items, Localizacao localizacao) {
         this.nome = nome;
@@ -55,6 +58,16 @@ public class Rebelde {
                 rebeldeDTO.getGenero(),
                 rebeldeDTO.getItems().stream().map(Item::of).collect(Collectors.toList()),
                 Localizacao.of(rebeldeDTO.getLocalizacao())
+        );
+    }
+
+    public static Rebelde of(Localizacao localizacao, RebeldeDTO rebeldeDTO) {
+        return new Rebelde(
+                rebeldeDTO.getNome(),
+                rebeldeDTO.getIdade(),
+                rebeldeDTO.getGenero(),
+                rebeldeDTO.getItems().stream().map(Item::of).collect(Collectors.toList()),
+                localizacao
         );
     }
 

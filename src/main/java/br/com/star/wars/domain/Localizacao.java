@@ -16,7 +16,7 @@ public class Localizacao {
 
     private Double latitude;
 
-    private Double longitutde;
+    private Double longitude;
 
     private String nome;
 
@@ -24,10 +24,13 @@ public class Localizacao {
 
     private String base;
 
-    public Localizacao(Long id, Double latitude, Double longitutde, String nome, String galaxia, String base) {
+    public Localizacao() {
+    }
+
+    public Localizacao(Long id, Double latitude, Double longitude, String nome, String galaxia, String base) {
         this.id = id;
         this.latitude = latitude;
-        this.longitutde = longitutde;
+        this.longitude = longitude;
         this.nome = nome;
         this.galaxia = galaxia;
         this.base = base;
@@ -63,8 +66,8 @@ public class Localizacao {
         return latitude;
     }
 
-    public Double getLongitutde() {
-        return longitutde;
+    public Double getLongitude() {
+        return longitude;
     }
 
     public String getNome() {

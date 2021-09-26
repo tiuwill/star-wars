@@ -22,6 +22,8 @@ public class ReporteDeTraicao {
 
     private LocalDateTime dataDoReporte;
 
+    public ReporteDeTraicao() {
+    }
 
     public ReporteDeTraicao(Rebelde reporter, Rebelde reportado) {
         this.reporter = reporter;

@@ -19,6 +19,9 @@ public class Item {
    @ManyToMany(mappedBy = "items")
    private List<Rebelde> rebeldes;
 
+    public Item() {
+    }
+
     public Item(Long id, String descricao, Integer pontos) {
         this.id = id;
         this.descricao = descricao;

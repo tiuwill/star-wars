@@ -38,7 +38,8 @@ public class RebeldeController {
     }
 
     @PostMapping
-    public ResponseEntity<?> registrarRebelder(@Valid RebeldeDTO rebeldeDTO) {
+    public ResponseEntity<?> registrarRebelder(@Valid @RequestBody RebeldeDTO rebeldeDTO) {
+        rebeldeService.registrar(rebeldeDTO);
         return ResponseEntity.created(URI.create("/rebelde")).build();
     }
 

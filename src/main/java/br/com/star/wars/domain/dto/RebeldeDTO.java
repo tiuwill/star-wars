@@ -12,7 +12,6 @@ import java.util.List;
 
 public class RebeldeDTO {
 
-    @NotNull
     private Long id;
 
     @NotNull
@@ -26,7 +25,6 @@ public class RebeldeDTO {
     private Integer idade;
 
     @NotNull
-    @Length(max = 15)
     private Genero genero;
 
     @NotNull

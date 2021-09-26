@@ -29,7 +29,8 @@ public class RebeldeService {
     }
 
     public void registrar(RebeldeDTO rebeldeDTO) {
-        rebeldeRepository.save(Rebelde.of(rebeldeDTO));
+        Localizacao localizacao = localizacaoRepository.save(Localizacao.of(rebeldeDTO.getLocalizacao()));
+        rebeldeRepository.save(Rebelde.of(localizacao,rebeldeDTO));
     }
 
     public RebeldeDTO buscarRebelde(Long id) {
