@@ -2,6 +2,7 @@ package br.com.star.wars.service;
 
 import br.com.star.wars.domain.dto.ItemDTO;
 import br.com.star.wars.exception.PontuacaoNaoEquivalenteException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +12,7 @@ public class RegraDeNegociacaoService {
 
     private final ItemService itemService;
 
+    @Autowired
     public RegraDeNegociacaoService(ItemService itemService) {
         this.itemService = itemService;
     }
