@@ -52,8 +52,9 @@ public class Rebelde {
         this.localizacao = localizacao;
     }
 
-    public Rebelde(String nome, Integer idade, Genero genero, List<Item> items, Localizacao localizacao,
+    public Rebelde(Long id, String nome, Integer idade, Genero genero, List<Item> items, Localizacao localizacao,
                    List<ReporteDeTraicao> reportesRecebidos) {
+        this.id = id;
         this.nome = nome;
         this.idade = idade;
         this.genero = genero;

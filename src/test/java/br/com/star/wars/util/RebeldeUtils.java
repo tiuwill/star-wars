@@ -10,7 +10,20 @@ import java.util.Collections;
 public class RebeldeUtils {
 
     public static Rebelde rebelde(){
-        return new Rebelde("Rebelde um",
+        return new Rebelde(
+                1L,
+                "Rebelde um",
+                22,
+                Genero.FEMININO,
+                new ArrayList<>(ItemUtils.criarItemsTeste()),
+                LocalizacaoUtils.criarLocalizacaoTeste(),
+                new ArrayList<>());
+    }
+
+    public static Rebelde rebelde(Long id){
+        return new Rebelde(
+                id,
+                "Rebelde um",
                 22,
                 Genero.FEMININO,
                 new ArrayList<>(ItemUtils.criarItemsTeste()),

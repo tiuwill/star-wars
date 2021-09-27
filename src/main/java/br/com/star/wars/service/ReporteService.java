@@ -9,6 +9,8 @@ import br.com.star.wars.repository.ReporteDeTraicaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 public class ReporteService {
 
@@ -22,6 +24,7 @@ public class ReporteService {
         this.rebeldeService = rebeldeService;
     }
 
+    @Transactional
     public void reportar(ReporteDTO reporteDTO) {
         Rebelde reporter = rebeldeService.buscar(reporteDTO.getReporter());
         Rebelde reportado = rebeldeService.buscar(reporteDTO.getReportado());
