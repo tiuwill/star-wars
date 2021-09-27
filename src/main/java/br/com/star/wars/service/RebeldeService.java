@@ -13,6 +13,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RebeldeService {
 
@@ -27,6 +29,10 @@ public class RebeldeService {
 
     public Page<RebeldeDTO> listar(Pageable paginacao) {
         return rebeldeRepository.findByTraidorFalse(paginacao).map(RebeldeDTO::of);
+    }
+
+    public List<Rebelde> listarTraidores() {
+        return rebeldeRepository.findByTraidorTrue();
     }
 
     public void registrar(RebeldeDTO rebeldeDTO) {
@@ -56,4 +62,19 @@ public class RebeldeService {
         return this.rebeldeRepository.save(rebelde);
     }
 
+    public Long contarTraidores() {
+        return this.rebeldeRepository.countByTraidorTrue();
+    }
+
+    public Long totalDeRegistros() {
+        return this.rebeldeRepository.count();
+    }
+
+    public Long contarRebeldes() {
+        return this.rebeldeRepository.countByTraidorFalse();
+    }
+
+    public List<Rebelde> listarRebeldes() {
+        return this.rebeldeRepository.findByTraidorFalse();
+    }
 }

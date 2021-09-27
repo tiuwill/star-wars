@@ -4,6 +4,7 @@ import br.com.star.wars.domain.dto.ItemDTO;
 import br.com.star.wars.domain.dto.RebeldeDTO;
 
 import javax.persistence.*;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -104,8 +105,15 @@ public class Rebelde {
     }
 
     public List<Item> getItems() {
+        if(this.items == null) return Collections.emptyList();
         return items;
     }
+
+    public Integer getPontuacao() {
+        if(this.items == null) return 0;
+        return this.getItems().stream().mapToInt(Item::getPontos).sum();
+    }
+
 
     public void atualizarInventario(List<ItemDTO> remover, List<ItemDTO> adicionar) {
         items.removeIf(item ->
