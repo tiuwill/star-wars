@@ -26,7 +26,7 @@ public class RebeldeService {
     }
 
     public Page<RebeldeDTO> listar(Pageable paginacao) {
-        return rebeldeRepository.findAll(paginacao).map(RebeldeDTO::of);
+        return rebeldeRepository.findByTraidorFalse(paginacao).map(RebeldeDTO::of);
     }
 
     public void registrar(RebeldeDTO rebeldeDTO) {
