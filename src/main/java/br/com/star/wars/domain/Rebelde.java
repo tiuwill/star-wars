@@ -52,6 +52,17 @@ public class Rebelde {
         this.localizacao = localizacao;
     }
 
+    public Rebelde(String nome, Integer idade, Genero genero, List<Item> items, Localizacao localizacao,
+                   List<ReporteDeTraicao> reportesRecebidos) {
+        this.nome = nome;
+        this.idade = idade;
+        this.genero = genero;
+        this.traidor = false;
+        this.items = items;
+        this.localizacao = localizacao;
+        this.reportesRecebidos = reportesRecebidos;
+    }
+
     public static Rebelde of(RebeldeDTO rebeldeDTO) {
         return new Rebelde(
                 rebeldeDTO.getNome(),

@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -35,6 +36,7 @@ public class RebeldeService {
         return rebeldeRepository.findByTraidorTrue();
     }
 
+    @Transactional
     public void registrar(RebeldeDTO rebeldeDTO) {
         Localizacao localizacao = localizacaoRepository.save(Localizacao.of(rebeldeDTO.getLocalizacao()));
         rebeldeRepository.save(Rebelde.of(localizacao,rebeldeDTO));
