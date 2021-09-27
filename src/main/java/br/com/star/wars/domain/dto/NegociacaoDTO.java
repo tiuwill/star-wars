@@ -1,25 +1,33 @@
 package br.com.star.wars.domain.dto;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 public class NegociacaoDTO {
 
-    private PartesDTO parte1;
-    private PartesDTO parte2;
+    @NotNull
+    private PartesDTO primeiraParte;
+    @NotNull
+    private PartesDTO segundaParte;
+
+    public NegociacaoDTO(PartesDTO primeiraParte, PartesDTO segundaParte) {
+        this.primeiraParte = primeiraParte;
+        this.segundaParte = segundaParte;
+    }
 
     public Long getIdPrimieroNegociante(){
-        return this.parte1.getNegociante().getId();
+        return this.primeiraParte.getNegociante().getId();
     }
 
     public List<ItemDTO> getItemsPrimeiroNegociante(){
-        return this.parte1.getItems();
+        return this.primeiraParte.getItems();
     }
 
     public Long getIdSegundoNegociante(){
-        return this.parte2.getNegociante().getId();
+        return this.segundaParte.getNegociante().getId();
     }
 
     public List<ItemDTO> getItemsSegundoNegociante(){
-        return this.parte2.getItems();
+        return this.segundaParte.getItems();
     }
 }

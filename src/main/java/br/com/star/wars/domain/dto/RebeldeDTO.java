@@ -10,6 +10,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RebeldeDTO {
 
@@ -36,21 +37,24 @@ public class RebeldeDTO {
     @NotNull
     private List<ItemDTO> items;
 
-    public RebeldeDTO(Long id, String nome, Integer idade, Genero genero, LocalizacaoDTO localizacao) {
+    public RebeldeDTO(Long id, String nome, Integer idade, Genero genero, LocalizacaoDTO localizacao, List<ItemDTO> items) {
         this.id = id;
         this.nome = nome;
         this.idade = idade;
         this.genero = genero;
         this.localizacao = localizacao;
+        this.items = items;
     }
+
 
     public static RebeldeDTO of(Rebelde rebelde) {
         return new RebeldeDTO(
-                rebelde.getId(),
-                rebelde.getNome(),
-                rebelde.getIdade(),
-                rebelde.getGenero(),
-                LocalizacaoDTO.of(rebelde.getLocalizacao())
+            rebelde.getId(),
+            rebelde.getNome(),
+            rebelde.getIdade(),
+            rebelde.getGenero(),
+            LocalizacaoDTO.of(rebelde.getLocalizacao()),
+            rebelde.getItems().stream().map(ItemDTO::of).collect(Collectors.toList())
         );
     }
 

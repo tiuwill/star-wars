@@ -2,12 +2,9 @@ package br.com.star.wars.service;
 
 import br.com.star.wars.domain.Rebelde;
 import br.com.star.wars.domain.ReporteDeTraicao;
-import br.com.star.wars.domain.dto.RebeldeDTO;
 import br.com.star.wars.domain.dto.ReporteDTO;
 import br.com.star.wars.exception.AutoReporteException;
-import br.com.star.wars.exception.RebeldeNaoEncontradoException;
 import br.com.star.wars.exception.ReporteDeTraicaoDuplicadoException;
-import br.com.star.wars.repository.RebeldeRepository;
 import br.com.star.wars.repository.ReporteDeTraicaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,19 +13,18 @@ import org.springframework.stereotype.Service;
 public class ReporteService {
 
     private final ReporteDeTraicaoRepository repository;
-    private final RebeldeRepository rebeldeRepository;
+    private final RebeldeService rebeldeService;
 
     @Autowired
     public ReporteService(ReporteDeTraicaoRepository repository,
-                          RebeldeRepository rebeldeRepository) {
+                          RebeldeService rebeldeService) {
         this.repository = repository;
-        this.rebeldeRepository = rebeldeRepository;
+        this.rebeldeService = rebeldeService;
     }
 
     public void reportar(ReporteDTO reporteDTO) {
-
-        Rebelde reporter = buscarRebelde(reporteDTO.getReporter());
-        Rebelde reportado = buscarRebelde(reporteDTO.getReportado());
+        Rebelde reporter = rebeldeService.buscar(reporteDTO.getReporter());
+        Rebelde reportado = rebeldeService.buscar(reporteDTO.getReportado());
 
         if(reporter.getId().equals(reportado.getId())) throw new AutoReporteException(reporter.getNome());
 
@@ -38,10 +34,6 @@ public class ReporteService {
             });
 
         repository.save(new ReporteDeTraicao(reporter, reportado));
+        if(reportado.seTornouTraidor()) rebeldeService.salvar(reportado);
     }
-
-    public Rebelde buscarRebelde(Long id) {
-        return rebeldeRepository.findById(id).orElseThrow(RebeldeNaoEncontradoException::new);
-    }
-
 }

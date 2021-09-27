@@ -2,7 +2,6 @@ package br.com.star.wars.domain;
 
 import br.com.star.wars.domain.dto.ItemDTO;
 import br.com.star.wars.domain.dto.RebeldeDTO;
-import org.apache.tomcat.jni.Local;
 
 import javax.persistence.*;
 import java.util.List;
@@ -37,7 +36,7 @@ public class Rebelde {
     @OneToMany(mappedBy="reporter")
     private List<ReporteDeTraicao> reportesDados;
 
-    @OneToMany(mappedBy="reportado")
+    @OneToMany(mappedBy="reportado", fetch = FetchType.LAZY)
     private List<ReporteDeTraicao> reportesRecebidos;
 
     public Rebelde() {
@@ -104,6 +103,10 @@ public class Rebelde {
         return reportesRecebidos;
     }
 
+    public List<Item> getItems() {
+        return items;
+    }
+
     public void atualizarInventario(List<ItemDTO> remover, List<ItemDTO> adicionar) {
         items.removeIf(item ->
                 remover.stream().anyMatch(
@@ -113,5 +116,13 @@ public class Rebelde {
         );
 
         items.addAll(adicionar.stream().map(Item::of).collect(Collectors.toList()));
+    }
+
+    public boolean seTornouTraidor() {
+        if(this.getReportesRecebidos().size() > 2) {
+            this.traidor = true;
+            return true;
+        }
+        return false;
     }
 }
