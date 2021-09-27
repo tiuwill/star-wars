@@ -25,7 +25,7 @@ public class NegociacaoService {
     @Transactional
     public void negociar(NegociacaoDTO negociacaoDTO) {
         Rebelde primeiroNegociante = rebeldeService.buscar(negociacaoDTO.getIdPrimieroNegociante());
-        Rebelde segundoNegociante = rebeldeService.buscar(negociacaoDTO.getIdPrimieroNegociante());
+        Rebelde segundoNegociante = rebeldeService.buscar(negociacaoDTO.getIdSegundoNegociante());
         List<ItemDTO> itemsPrimeiroNegociante = negociacaoDTO.getItemsPrimeiroNegociante();
         List<ItemDTO> itemsSegundoNegociante = negociacaoDTO.getItemsSegundoNegociante();
 
