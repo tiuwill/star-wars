@@ -23,16 +23,16 @@ public class RelatorioService {
     }
 
     public TraidoresRelatorioDTO calcularTraidores() {
-        Long traidores = rebeldeService.contarTraidores();
-        Long total = rebeldeService.totalDeRegistros();
+        Double traidores = Double.valueOf(rebeldeService.contarTraidores());
+        Double total = Double.valueOf(rebeldeService.totalDeRegistros());
 
         Double porcentagem =  (traidores/total) * 100.0;
         return new TraidoresRelatorioDTO(String.format("%.2f", porcentagem));
     }
 
     public RebeldesRelatoriosDTO calcularRebeldes() {
-        Long rebeldes = rebeldeService.contarRebeldes();
-        Long total = rebeldeService.totalDeRegistros();
+        Double rebeldes = Double.valueOf(rebeldeService.contarRebeldes());
+        Double total = Double.valueOf(rebeldeService.totalDeRegistros());
 
         Double porcentagem =  (rebeldes/total) * 100.0;
         return new RebeldesRelatoriosDTO(String.format("%.2f", porcentagem));
