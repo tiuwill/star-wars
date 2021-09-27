@@ -41,7 +41,7 @@ public class RelatorioController {
         return ResponseEntity.ok(relatorioDTO);
     }
 
-    @GetMapping("/prontos")
+    @GetMapping("/pontos")
     public ResponseEntity<PontosRelatorioDTO> calcularPontos() {
         PontosRelatorioDTO relatorioDTO = relatorioService.calcularPontos();
         return ResponseEntity.ok(relatorioDTO);
