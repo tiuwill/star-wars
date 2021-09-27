@@ -1,0 +1,275 @@
+{
+	"info": {
+		"_postman_id": "cb0c67c5-abf2-4201-b6b5-a0d006677cc6",
+		"name": "Star Wars",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Item",
+			"item": [
+				{
+					"name": "Listar Items",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/item",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"item"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Rebelde",
+			"item": [
+				{
+					"name": "Listar Rebeldes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/rebelde",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rebelde"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registrar rebelde",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nome\": \"Rebel Two\",\n  \"idade\": 25,\n  \"genero\": \"MASCULINO\",\n  \"localizacao\": {\n    \"latitude\": 0.0,\n    \"longitutde\": 0.0,\n    \"nome\": \"Far far away\",\n    \"galaxia\": \"nowhere\",\n    \"base\": \"lua\"\n  },\n  \"items\": [\n    {\n      \"id\": 2\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/rebelde",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rebelde"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar inventário do rebelde",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/rebelde/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rebelde",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Localização",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"latitude\": 0.5,\n  \"longitutde\": 0.2,\n  \"nome\": \"Nova Localização\",\n  \"galaxia\": \"Mais Perto\",\n  \"base\": \"Outra base\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/rebelde/2/localizacao",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rebelde",
+								"2",
+								"localizacao"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reportar Traíção",
+			"item": [
+				{
+					"name": "Reportar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"reporter\": 2,\n  \"reportado\": 4\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/reportar",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"reportar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Negociar",
+			"item": [
+				{
+					"name": "Negociar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"primeiraParte\": {\n    \"negociante\": {\n      \"id\": 2\n    },\n    \"items\": [\n      {\n        \"id\": 4\n      },\n      {\n        \"id\": 3\n      }\n    ]\n  },\n  \"segundaParte\": {\n    \"negociante\": {\n      \"id\": 4\n    },\n    \"items\": [\n      {\n        \"id\": 2\n      }\n    ]\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/negociacao",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"negociacao"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Relatórios",
+			"item": [
+				{
+					"name": "Porcentagem de Traidores",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/relatorio/traidores",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"relatorio",
+								"traidores"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Porcentagem de rebeldes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/relatorio/rebelldes",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"relatorio",
+								"rebelldes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Média de items",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/relatorio/recursos",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"relatorio",
+								"recursos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pontos perdidos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/relatorio/pontos",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"relatorio",
+								"pontos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
